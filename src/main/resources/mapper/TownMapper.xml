@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.soneer.assetdata.mapper.TownMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="TownResultMap" type="cn.soneer.assetdata.entity.Town">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="code" property="code" />
+        <result column="ident" property="ident" />
+    </resultMap>
+
+    <select id="getTownByProvinceAndCityAndArea" resultType="cn.soneer.assetdata.entity.Town">
+        select * from town where  province = #{province} and city = #{city} and area = #{area};
+    </select>
+
+    <select id="getTownByProvinceAndArea" resultType="cn.soneer.assetdata.entity.Town">
+        select * from town where  province = #{province} and area = #{area};
+    </select>
+
+</mapper>

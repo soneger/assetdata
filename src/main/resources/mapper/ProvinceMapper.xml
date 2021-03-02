@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.soneer.assetdata.mapper.ProvinceMapper">
+    <resultMap id="BaseResultMap" type="cn.soneer.assetdata.entity.Province">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="province" property="province" />
+        <result column="ident" property="ident" />
+        <collection property="city" javaType="java.util.ArrayList" column="province" ofType="cn.soneer.assetdata.entity.City"
+                    select="cn.soneer.assetdata.mapper.CityMapper.getCityByProvince" >
+            <collection property="area" column="{province=province,city=city}" ofType="cn.soneer.assetdata.entity.Area"
+                        select="cn.soneer.assetdata.mapper.AreaMapper.getAreaByCity" >
+<!--                <collection property="town" column="{province=province,city=city,area=area}" ofType="cn.soneer.assetdata.entity.Town"-->
+<!--                            select="cn.soneer.assetdata.mapper.TownMapper.getTownByProvinceAndCityAndArea"/>-->
+            </collection>
+
+        </collection>
+    </resultMap>
+
+    <resultMap id="areaResultMap" type="cn.soneer.assetdata.entity.Municipality">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="province" property="province" />
+        <result column="ident" property="ident" />
+        <collection property="area" javaType="java.util.ArrayList" column="province" ofType="cn.soneer.assetdata.entity.Area"
+                    select="cn.soneer.assetdata.mapper.AreaMapper.getAreaByProvince" >
+            <collection property="town" column="{province=province,city=area}" ofType="cn.soneer.assetdata.entity.Town"
+                        select="cn.soneer.assetdata.mapper.TownMapper.getTownByProvinceAndArea"/>
+
+        </collection>
+    </resultMap>
+
+
+    <sql id="baseSql">
+      id, code,name,province,ident
+    </sql>
+
+    <select id="listAll" resultMap="BaseResultMap">
+        select <include refid="baseSql"></include> from province ;
+    </select>
+
+    <select id="provinceList" resultType="cn.soneer.assetdata.entity.Province">
+     select  <include refid="baseSql"></include> from province ;
+    </select>
+
+    <select id="getByProvince" resultMap="BaseResultMap">
+        select <include refid="baseSql"></include> from province where province = #{province};
+    </select>
+
+    <select id="getAreaByProvince" resultMap="areaResultMap">
+        select <include refid="baseSql"></include> from province where province = #{province};
+    </select>
+
+</mapper>

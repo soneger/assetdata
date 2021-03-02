@@ -1,0 +1,52 @@
+server:
+  port: 8080
+
+ip:
+  whilteList: 127.0.0.1,192.168.43.100
+  whilteListEnable: false
+
+api:
+  domain: https://qyexpress.market.alicloudapi.com
+  path: /composite/queryexpress
+  appCode: b333b9eaf1744300a8ad7f030c2b2732
+  appKey:
+  appSecret:
+
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: Sone@920801
+    #serverTimezone=UTC 配置时区
+    url: jdbc:mariadb://nas.soneer.cn:3307/assetdata?characterEncoding=utf-8&useSSL=false&useTimezone=true&serverTimezone=GMT%2B8
+
+    #Spring Boot 默认是不注入这些属性值的，需要自己绑定
+    #druid 数据源专有配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+
+    #配置监控统计拦截的filters，stat:监控统计、log4j：日志记录、wall：防御sql注入
+    #如果允许时报错  java.lang.ClassNotFoundException: org.apache.log4j.Priority
+    #则导入 log4j 依赖即可，
+    filters: stat,wall
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  mvc:
+    static-path-pattern: /static/**/**
+
+mybatis:
+  mapper-locations: mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
