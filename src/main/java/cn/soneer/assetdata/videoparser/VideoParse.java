@@ -1,4 +1,4 @@
-package cn.soneer.assetdata.vedioparser;
+package cn.soneer.assetdata.videoparser;
 
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.http.HttpResponse;
@@ -7,12 +7,10 @@ import cn.soneer.assetdata.utils.RegexUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
-import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -22,7 +20,7 @@ import java.util.HashMap;
  * @time: 19:28
  */
 @Slf4j
-public class VedioParser {
+public class VideoParse {
     private final static String KSAPI = "";
     private final static String DYAPI = "https://www.iesdouyin.com/web/api/v2/aweme/iteminfo/?item_ids=";
     private final static String PPXAPI = "https://is.snssdk.com/bds/item/detail/?app_name=super&aid=1319&item_id=";
@@ -96,7 +94,8 @@ public class VedioParser {
 //                .getJSONObject("video_high");
 //        JSONArray url_list = JSONArray.parseArray(video_high.getString("url_list"));
         log.info("data:{}",comments.get(0));
-        return comments.get(0).toString();
+        String videoUrl = comments.getJSONObject(0).getString("url");
+        return videoUrl;
     }
 
 

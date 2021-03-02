@@ -1,7 +1,7 @@
 package cn.soneer.assetdata;
 
 import cn.soneer.assetdata.utils.RegexUtil;
-import cn.soneer.assetdata.vedioparser.VedioParser;
+import cn.soneer.assetdata.videoparser.VideoParse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -18,14 +18,14 @@ public class VideoParseTest {
         String dyUrl = "重庆开往春天的轻轨你赶上了么%开往春天的列车  https://v.douyin.com/e1Lfo4j/ 复zhi佌链接，达开Dou愔搜索，直接观看視频！";
         String dyUrl1 = "%每一帧都是热爱 %禁闭 水泡 车帅不帅  %高清壁纸%60帧  https://v.douyin.com/e1asRfP/ 緮制佌lian接，打开Dou音搜索，直接观kan视频！";
         String dyApi = "https://www.iesdouyin.com/web/api/v2/aweme/iteminfo/?item_ids=";
-        String dyParseUrl = VedioParser.dyParseUrl(dyUrl1, dyApi);
+        String dyParseUrl = VideoParse.dyParseUrl(dyUrl1, dyApi);
         log.info("抖音无水印视频地址：{}",dyParseUrl);
     }
 
     @Test
     public void kuaiShou(){
         String ksUrl = "新作品来了，6666张多米诺纸牌搭建而成，能火吗 https://v.kuaishou.com/dwCb17 复制此消息，打开【快手】直接观看！";
-        String s = VedioParser.ksParseUrl(ksUrl);
+        String s = VideoParse.ksParseUrl(ksUrl);
         log.info("快手无水印视频地址：{}",s);
     }
 
@@ -36,14 +36,14 @@ public class VideoParseTest {
         String ppxUrl2 = "https://h5.pipix.com/s/e1xkuEr/";
         String ppxApi = "https://is.snssdk.com/bds/item/detail/?app_name=super&aid=1319&item_id=";
         String ppxApi1 = "https://h5.pipix.com/bds/webapi/item/detail/?item_id=";
-        String ppxParseUrl = VedioParser.ppxParseUrl(ppxUrl2, ppxApi);
+        String ppxParseUrl = VideoParse.ppxParseUrl(ppxUrl2, ppxApi);
         log.info("皮皮虾无水印视频地址：{}",ppxParseUrl);
     }
 
     @Test
     public void weiShi(){
         String weiShiUrl = "https://isee.weishi.qq.com/ws/app-pages/share/index.html?wxplay=1&id=6Ytqpd2Qe1Lac26Vl&spid=1533682131998375&qua=v1_and_weishi_8.10.2_588_312028000_d&chid=100081014&pkg=3670&attach=cp_reserves3_1000370011";
-        String weiShiParseUrl = VedioParser.weiShiParseUrl(weiShiUrl);
+        String weiShiParseUrl = VideoParse.weiShiParseUrl(weiShiUrl);
         log.info("weiShiParseUrl:{}",weiShiParseUrl);
     }
 
@@ -53,7 +53,7 @@ public class VideoParseTest {
         String dyUrl = "重庆开往春天的轻轨你赶上了么%开往春天的列车  https://v.douyin.com/e1Lfo4j/ 复zhi佌链接，达开Dou愔搜索，直接观看視频！";
         String ksUrl = "新作品来了，6666张多米诺纸牌搭建而成，能火吗 https://v.kuaishou.com/dwCb17 复制此消息，打开【快手】直接观看！";
 //        String videoParse = VedioParser.videoParse(ppxUrl);
-        String videoParse = VedioParser.videoParse(dyUrl);
+        String videoParse = VideoParse.videoParse(dyUrl);
 //        String videoParse = VedioParser.videoParse(ksUrl);
         log.info("解析后的视频地址：{}",videoParse);
     }
