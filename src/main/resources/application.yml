@@ -5,12 +5,7 @@ ip:
   whilteList: 127.0.0.1,192.168.43.100
   whilteListEnable: false
 
-api:
-  domain: https://qyexpress.market.alicloudapi.com
-  path: /composite/queryexpress
-  appCode: b333b9eaf1744300a8ad7f030c2b2732
-  appKey:
-  appSecret:
+
 
 spring:
   datasource:
