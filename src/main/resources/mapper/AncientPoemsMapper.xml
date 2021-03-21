@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.soneer.assetdata.mapper.AncientPoemsMapper">
+    <resultMap id="BaseResultMap" type="cn.soneer.assetdata.entity.AncientPoems">
+
+    </resultMap>
+
+    <sql id="baseSql">
+      p.id, title,author,author_head,category,era,content,content_html,translation,explanation,appreciation,author_info,background,type
+    </sql>
+
+    <select id="listByType" resultType="cn.soneer.assetdata.vo.AncientPoemsVo">
+        SELECT p.id,title,author FROM ancient_poems p,poems_ref pr WHERE p.id =pr.poems_data_id AND pr.poems_type_id =#{typeId}
+    </select>
+
+    <select id="getByTypeIdAndId" resultMap="BaseResultMap">
+        SELECT  <include refid="baseSql"/> FROM ancient_poems p,poems_ref pr WHERE pr.poems_type_id and pr.poems_data_id = p.id AND pr.poems_type_id = #{typeId} AND pr.poems_data_id = #{id}
+    </select>
+
+</mapper>

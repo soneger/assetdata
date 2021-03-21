@@ -32,6 +32,7 @@ public class WeiXinService {
         Map<String,String> headers = new HashMap<>(1);
         params.put("appId",appId);
         params.put("secret",secret);
+        params.put("js_code",code);
         params.put("grant_type",grant_type);
         try {
             HttpResponse response = HttpUtils.doGet(WX_LOGIN_DOMAIN, WX_LOGIN_PATH, "GET", headers,params);

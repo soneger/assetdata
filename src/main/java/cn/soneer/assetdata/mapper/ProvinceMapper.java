@@ -1,6 +1,5 @@
 package cn.soneer.assetdata.mapper;
 
-import cn.soneer.assetdata.entity.Municipality;
 import cn.soneer.assetdata.entity.Province;
 
 import java.util.List;
@@ -14,7 +13,6 @@ public interface ProvinceMapper  {
 
     Province getByProvince(String province);
 
-    Municipality getAreaByProvince(String province);
 
     List<Province> listAll();
 

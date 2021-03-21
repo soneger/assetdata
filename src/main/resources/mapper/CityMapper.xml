@@ -9,10 +9,10 @@
         <result column="code" property="code" />
         <result column="ident" property="ident" />
 
-<!--        <collection property="area" column="{city=city,province=province}"  javaType="java.util.ArrayList" ofType="cn.soneer.assetdata.entity.Area"-->
-<!--                    select="cn.soneer.assetdata.mapper.AreaMapper.getAreaByCity" >-->
+        <collection property="area" column="{city=city,province=province}"  javaType="java.util.ArrayList" ofType="cn.soneer.assetdata.entity.Area"
+                    select="cn.soneer.assetdata.mapper.AreaMapper.getAreaByCity" >
 
-<!--        </collection>-->
+        </collection>
     </resultMap>
 
 

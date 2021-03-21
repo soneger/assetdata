@@ -1,5 +1,6 @@
 package cn.soneer.assetdata.config;
 
+import cn.soneer.assetdata.interceptor.APIInterceptor;
 import cn.soneer.assetdata.interceptor.IPWhiteListInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,12 +19,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
     private boolean ipWhilteListEnable;
     @Autowired
     private IPWhiteListInterceptor ipWhiteListInterceptor;
+    @Autowired
+    private APIInterceptor apiInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         if(ipWhilteListEnable){
             registry.addInterceptor(ipWhiteListInterceptor).addPathPatterns("/**");
         }
+        registry.addInterceptor(apiInterceptor).addPathPatterns("/**");
     }
 
 }

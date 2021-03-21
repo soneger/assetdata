@@ -1,6 +1,7 @@
 package cn.soneer.assetdata.exception;
 
 import cn.soneer.assetdata.commons.dto.RespData;
+import io.lettuce.core.RedisCommandTimeoutException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -38,8 +39,14 @@ public class ResultExceptionHandler {
     /** 拦截未知的运行时异常 */
     @ExceptionHandler(RuntimeException.class)
     public RespData runtimeException(RuntimeException e) {
-        log.error("【系统异常】", e);
+        log.error("【系统异常】:{}", e);
         return RespData.error("系统异常");
+    }
+
+    @ExceptionHandler(RedisCommandTimeoutException.class)
+    public RespData runtimeException(RedisCommandTimeoutException e) {
+        log.error("【缓存异常】:{}", e);
+        return RespData.error("缓存异常");
     }
 
 
@@ -47,7 +54,7 @@ public class ResultExceptionHandler {
     /** 拦截参数错误异常 */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public RespData runtimeException(MethodArgumentNotValidException e) {
-        log.error("", e);
+        log.error("参数异常：{}", e);
         // 获取异常信息
         BindingResult exceptions = e.getBindingResult();
         // 判断异常中是否有错误信息，如果存在就使用异常中的消息，否则使用默认消息

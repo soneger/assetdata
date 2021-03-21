@@ -42,7 +42,7 @@ public class DistrictController {
         return RespData.success(list);
     }
 
-    @RequestMapping("/province/getByProvince")
+    /*@RequestMapping("/province/getByProvince")
     //@RequestAstrict()
     public RespData getByProvince(String province){
         String[] codes = new String[]{"11","12","31","50"};
@@ -52,7 +52,7 @@ public class DistrictController {
         }
         Province list = provinceService.getByProvince(province);
         return RespData.success(list);
-    }
+    }*/
 
     @GetMapping("/city")
     public RespData getCityByProvince(String province){

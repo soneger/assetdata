@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.soneer.assetdata.mapper.UserApiMapper">
+
+    <resultMap id="BaseResultMap" type="cn.soneer.assetdata.entity.UserApi">
+        <result column="id" property="id"/>
+        <result column="api_id" property="apiId"/>
+        <result column="app_id" property="appId"/>
+        <result column="secret_key" property="secretKey"/>
+        <result column="private_key" property="privateKey"/>
+        <result column="total_count" property="totalCount"/>
+        <result column="used_count" property="usedCount"/>
+        <result column="success_count" property="successCount"/>
+        <result column="error_count" property="errorCount"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                id,
+                api_id,
+                app_id,
+                secret_key,
+                private_key,
+                total_count,
+                used_count,
+                success_count,
+                error_count,
+                status,
+                create_time
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id"
+            parameterType="cn.soneer.assetdata.entity.UserApi">
+        INSERT INTO user_api
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="null != appId and '' != appId">
+                app_id,
+            </if>
+            <if test="null != apiId and '' != apiId">
+                api_id,
+            </if>
+            <if test="null != secretKey and '' != secretKey">
+                secret_key,
+            </if>
+            <if test="null != privateKey and '' != privateKey">
+                private_key,
+            </if>
+            <if test="null != totalCount and '' != totalCount">
+                total_count,
+            </if>
+            <if test="null != usedCount and '' != usedCount">
+                used_count,
+            </if>
+            <if test="null != successCount and '' != successCount">
+                success_count,
+            </if>
+            <if test="null != errorCount and '' != errorCount">
+                error_count,
+            </if>
+            <if test="null != status and '' != status">
+                status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="null != appId and '' != appId">
+                #{appId},
+            </if>
+            <if test="null != apiId and '' != apiId">
+                #{apiId},
+            </if>
+            <if test="null != secretKey and '' != secretKey">
+                #{secretKey},
+            </if>
+            <if test="null != privateKey and '' != privateKey">
+                #{privateKey},
+            </if>
+            <if test="null != totalCount and '' != totalCount">
+                #{totalCount},
+            </if>
+            <if test="null != usedCount and '' != usedCount">
+                #{usedCount},
+            </if>
+            <if test="null != successCount and '' != successCount">
+                #{successCount},
+            </if>
+            <if test="null != errorCount and '' != errorCount">
+                #{errorCount},
+            </if>
+            <if test="null != status and '' != status">
+                #{status},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete">
+        DELETE
+        FROM user_api
+        WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="cn.soneer.assetdata.entity.UserApi">
+        UPDATE user_api
+        <set>
+            <if test="null != appId and '' != appId">app_id = #{appId},</if>
+            <if test="null != apiId and '' != apiId">api_id = #{apiId},</if>
+            <if test="null != secretKey and '' != secretKey">secret_key = #{secretKey},</if>
+            <if test="null != privateKey and '' != privateKey">private_key = #{privateKey},</if>
+            <if test="null != totalCount and '' != totalCount">total_count = #{totalCount},</if>
+            <if test="null != usedCount and '' != usedCount">used_count = #{usedCount},</if>
+            <if test="null != successCount and '' != successCount">success_count = #{successCount},</if>
+            <if test="null != errorCount and '' != errorCount">error_count = #{errorCount},</if>
+            <if test="null != status and '' != status">status = #{status},</if>
+            <if test="null != createTime and '' != createTime">create_time = #{createTime}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <select id="load" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user_api
+        WHERE id = #{id}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user_api
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM user_api
+    </select>
+
+    <select id="getByAppId" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM user_api where app_id = #{appId}
+    </select>
+
+</mapper>

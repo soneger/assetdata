@@ -3,6 +3,7 @@ package cn.soneer.assetdata.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Date;
  * @Version 1.0
  */
 @Data
-public class BaseEntiry {
+public class BaseEntiry implements Serializable {
 
     private String code;
     private String name;

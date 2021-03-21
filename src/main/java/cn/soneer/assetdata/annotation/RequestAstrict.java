@@ -11,8 +11,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface RequestAstrict {
-
-    int count() default Integer.MAX_VALUE; // 次数
-
-    long time() default 5000; // 时间/单位毫秒
+    String name() default "";
+    int count() default 3; // 次数
+    int seconds() default 10; // 时间/单位毫秒
 }

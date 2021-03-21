@@ -3,29 +3,31 @@
 <mapper namespace="cn.soneer.assetdata.mapper.AreaMapper">
 
     <!-- 通用查询映射结果 -->
-<!--    <resultMap id="areaResultMap" type="cn.soneer.assetdata.entity.Area">-->
+    <resultMap id="areaResultMap" type="cn.soneer.assetdata.entity.Area">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="code" property="code" />
+        <result column="area" property="area"/>
+        <result column="ident" property="ident" />
 <!--        <collection property="town" column="{province=province,area=area}" ofType="cn.soneer.assetdata.entity.Town"-->
 <!--                    select="cn.soneer.assetdata.mapper.TownMapper.getTownByProvinceAndArea"/>-->
-<!--    </resultMap>-->
+    </resultMap>
 
 <!--    <resultMap id="areaResultMapAll" type="cn.soneer.assetdata.entity.Area">-->
 <!--        <collection property="town" column="{province=province,city=city,area=area}" ofType="cn.soneer.assetdata.entity.Town"-->
 <!--                    select="cn.soneer.assetdata.mapper.TownMapper.getTownByProvinceAndCityAndArea"/>-->
 <!--    </resultMap>-->
 
-    <select id="getAreaByProvince" resultType="cn.soneer.assetdata.entity.Area">
+    <select id="getAreaByProvince" resultMap="areaResultMap">
         select * from area where  province = #{province} and city = #{city};
     </select>
 
-    <select id="getAreaByCity" resultType="cn.soneer.assetdata.entity.Area">
+    <select id="getAreaByCity" resultMap="areaResultMap">
         select * from area where  province = #{province} and city = #{city};
     </select>
 
-    <select id="list" resultType="cn.soneer.assetdata.entity.Area">
+    <select id="list" resultMap="areaResultMap">
         select * from area ;
     </select>
 
-    <select id="getAreaByProvince" resultMap="areaResultMap">
-        select * from area where province = #{province};
-    </select>
 </mapper>

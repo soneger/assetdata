@@ -62,7 +62,8 @@ public class OCRTest {
 
 
         // 调用接口
-        String path = "D:/OCR/3.JPG";
+        String path = "E:/OCR/1.JPG";
+
         JSONObject res = client.basicAccurateGeneral(path, options);
         JSONArray words_result = res.getJSONArray("words_result");
         System.out.println(res.toString(2));
@@ -73,6 +74,33 @@ public class OCRTest {
             str+="\n"+words;
         }
         System.out.println(str);
+
+    }
+
+    @Test
+    public void idCardOCR() throws JSONException {
+        AipOcr client = new AipOcr("22915446", "nNPbeS4oGtyBWFVHpNUu83i4", "jyPojpVlqlAla2CUAkFGAa39ZNh5fq7a");
+        // 可选：设置网络连接参数
+        client.setConnectionTimeoutInMillis(2000);
+        client.setSocketTimeoutInMillis(60000);
+        // 传入可选参数调用接口
+        HashMap<String, String> options = new HashMap<String, String>();
+        options.put("detect_direction", "true");
+        options.put("detect_risk", "false");
+
+        String idCardSide = "back";
+
+        // 参数为本地图片路径
+        String idCard1 = "E:/OCR/idCard1.JPG";
+        String idCard2 = "E:/OCR/idCard2.JPG";
+        String mp = "E:/OCR/mp.JPG";
+        JSONObject res = client.idcard(idCard1, idCardSide, options);
+        System.out.println(res.toString(2));
+
+        // 参数为本地图片二进制数组
+//        byte[] file = readImageFile(image);
+//        res = client.idcard(file, idCardSide, options);
+//        System.out.println(res.toString(2));
 
     }
 }

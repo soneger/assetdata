@@ -26,11 +26,11 @@ public interface IProvinceService {
      */
     Province getByProvince(String province);
 
-    /**
-     * 获取直辖市区/县
-     * @param province
-     * @return
-     */
-    Municipality getAreaByProvince(String province);
+//    /**
+//     * 获取直辖市区/县
+//     * @param province
+//     * @return
+//     */
+//    Municipality getAreaByProvince(String province);
 
 }

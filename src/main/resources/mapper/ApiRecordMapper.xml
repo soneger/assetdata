@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.soneer.assetdata.mapper.ApiRecordMapper">
+
+    <resultMap id="BaseResultMap" type="cn.soneer.assetdata.entity.ApiRecord">
+        <result column="id" property="id"/>
+        <result column="api_name" property="apiName"/>
+        <result column="api_method" property="apiMethod"/>
+        <result column="user_appid" property="userAppid"/>
+        <result column="req_count" property="reqCount"/>
+        <result column="req_status" property="reqStatus"/>
+        <result column="req_ip" property="reqIp"/>
+        <result column="run_time" property="runTime"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                id,
+                api_name,
+                api_method,
+                user_appid,
+                req_count,
+                req_status,
+                req_ip,
+                run_time,
+                create_time
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id"
+            parameterType="cn.soneer.assetdata.entity.ApiRecord">
+        INSERT INTO api_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="null != apiName and '' != apiName">
+                api_name,
+            </if>
+            <if test="null != apiMethod and '' != apiMethod">
+                api_method,
+            </if>
+            <if test="null != userAppid and '' != userAppid">
+                user_appid,
+            </if>
+            <if test="null != reqCount and '' != reqCount">
+                req_count,
+            </if>
+            <if test="null != reqStatus and '' != reqStatus">
+                req_status,
+            </if>
+            <if test="null != reqIp and '' != reqIp">
+                req_ip,
+            </if>
+            <if test="null != runTime and '' != runTime">
+                run_time,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="null != apiName and '' != apiName">
+                #{apiName},
+            </if>
+            <if test="null != apiMethod and '' != apiMethod">
+                #{apiMethod},
+            </if>
+            <if test="null != userAppid and '' != userAppid">
+                #{userAppid},
+            </if>
+            <if test="null != reqCount and '' != reqCount">
+                #{reqCount},
+            </if>
+            <if test="null != reqStatus and '' != reqStatus">
+                #{reqStatus},
+            </if>
+            <if test="null != reqIp and '' != reqIp">
+                #{reqIp},
+            </if>
+            <if test="null != runTime and '' != runTime">
+                #{runTime},
+            </if>
+
+        </trim>
+    </insert>
+
+    <delete id="delete">
+        DELETE
+        FROM api_record
+        WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="cn.soneer.assetdata.entity.ApiRecord">
+        UPDATE api_record
+        <set>
+            <if test="null != apiName and '' != apiName">api_name = #{apiName},</if>
+            <if test="null != apiMethod and '' != apiMethod">api_method = #{apiMethod},</if>
+            <if test="null != userAppid and '' != userAppid">user_appid = #{userAppid},</if>
+            <if test="null != reqCount and '' != reqCount">req_count = #{reqCount},</if>
+            <if test="null != reqStatus and '' != reqStatus">req_status = #{reqStatus},</if>
+            <if test="null != reqIp and '' != reqIp">req_ip = #{reqIp},</if>
+            <if test="null != runTime and '' != runTime">run_time = #{runTime},</if>
+            <if test="null != createTime and '' != createTime">create_time = #{createTime}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <select id="load" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM api_record
+        WHERE id = #{id}
+    </select>
+
+    <select id="pageList" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM api_record
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="pageListCount" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM api_record
+    </select>
+
+</mapper>

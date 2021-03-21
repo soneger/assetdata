@@ -2,6 +2,7 @@ package cn.soneer.assetdata.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
  * @Version 1.0
  */
 @Data
-public class Province extends BaseEntiry{
+public class Province extends BaseEntiry  {
     private Long id;
     private String province;
     private List<City> city;

@@ -36,8 +36,4 @@ public class ProvinceServiceImpl implements IProvinceService {
         return provinceMapper.getByProvince(province);
     }
 
-    @Override
-    public Municipality getAreaByProvince(String province) {
-        return provinceMapper.getAreaByProvince(province);
-    }
 }

@@ -1,5 +1,6 @@
 package cn.soneer.assetdata.api;
 
+import cn.soneer.assetdata.annotation.RequestAstrict;
 import cn.soneer.assetdata.commons.dto.RespData;
 import cn.soneer.assetdata.videoparser.VideoParse;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/video/")
 public class VideoParseController {
 
+    @RequestAstrict
     @RequestMapping("/parse")
     public RespData expressQuery(String url){
         log.info("视频地址：{}，",url);

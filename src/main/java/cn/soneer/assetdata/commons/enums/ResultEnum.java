@@ -11,6 +11,11 @@ import lombok.Getter;
 @Getter
 public enum ResultEnum implements ResultInterface {
 
+    APP_ID_SECRETLY_NOT_NULL(10000,"appId或secretKey为空，邮箱联系：344309663@qq.com，或者搜索小程序《牛牛小助理》自行申请appId和secretKey。"),
+    API_REQ_OFTEN(10001,"接口访问太频繁啦"),
+    API_UNAUTHORIZED(10002,"接口未授权，邮箱联系：344309663@qq.com，或者搜索小程序《牛牛小助理》自行申请appId和secretKey。"),
+    API_RUN_OUT_OF(10003,"调用次数已用完"),
+
     /**
      *
      */
